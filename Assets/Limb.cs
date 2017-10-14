@@ -33,10 +33,10 @@ public class Limb : MonoBehaviour {
 	}
 
 	void Update() {
-		lastAngle = angle;
+//		lastAngle = angle;
 
 		if (control != null) {
-			angle = control.GetComponent<Slider> ().value;
+//			angle = control.GetComponent<Slider> ().value;
 		}
 
 		if (child != null) {

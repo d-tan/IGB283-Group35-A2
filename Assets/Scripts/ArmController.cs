@@ -40,7 +40,7 @@ public class ArmController : MonoBehaviour {
 	// Getting Up
 	bool isGettingUp = false;
 	float getupTimer = 0f;
-	float getupTime = 1.5f;
+	float getupTime = 3f;
 	Vector4 upPos = new Vector4(0, 0, 0, 0);
 
 	void Update() {

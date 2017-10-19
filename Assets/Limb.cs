@@ -15,6 +15,9 @@ public class Limb : MonoBehaviour {
 
 	public float lastAngle;
 
+	[HideInInspector]
+	public bool angleChanged = false;
+
 	public Vector3[] limbVertexLocations;
 
 	public Mesh mesh;
@@ -44,6 +47,11 @@ public class Limb : MonoBehaviour {
 		}
 
 		mesh.RecalculateBounds ();
+
+		if (angleChanged) {
+			angleChanged = false;
+			lastAngle = angle;
+		}
 	}
 
 	void DrawLimb() {

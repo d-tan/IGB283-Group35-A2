@@ -579,7 +579,7 @@ MonoBehaviour:
   - {x: 0.1, y: 1, z: 1}
   - {x: 0.1, y: 0, z: 1}
   mesh: {fileID: 0}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: aa61ec5ebaee54f5a8b5a219fe676d22, type: 2}
 --- !u!1 &435547727
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,7 +1368,7 @@ MonoBehaviour:
   - {x: 0.25, y: 2, z: 1}
   - {x: 0.25, y: 0, z: 1}
   mesh: {fileID: 0}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: f39da2234fcd14df3ad4096d1be820f0, type: 2}
 --- !u!1 &1136873736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,7 +1564,7 @@ MonoBehaviour:
   - {x: 0.25, y: 2, z: 1}
   - {x: 0.25, y: 0, z: 1}
   mesh: {fileID: 0}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: 8bd75f76c2cb2465da28d0753b7f03d2, type: 2}
 --- !u!1 &1204858626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,7 +1618,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 1}
   - {x: 1, y: -1, z: 1}
   mesh: {fileID: 0}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: 20b29b6cf285549b78051ffcdea6b086, type: 2}
 --- !u!1 &1347529916
 GameObject:
   m_ObjectHideFlags: 0

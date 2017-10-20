@@ -62,7 +62,7 @@ public class ArmController : MonoBehaviour {
 			NodWrist ();
 
 		// Holding 'A' key, move left
-		if (!isFalling && Input.GetKey(KeyCode.A)) {
+		if (!isFalling && !isGettingUp && Input.GetKey(KeyCode.A)) {
 
 			// Check if still in bounds
 			if (parts [(int)Joints.Base].jointLocation.x > moveBounds.x) {
@@ -74,7 +74,7 @@ public class ArmController : MonoBehaviour {
 			}
 		
 		// Holding 'D' key, move right
-		} else if (!isFalling && Input.GetKey(KeyCode.D)) {
+		} else if (!isFalling && !isGettingUp && Input.GetKey(KeyCode.D)) {
 
 			// Check if still in bounds
 			if (parts [(int)Joints.Base].jointLocation.x < moveBounds.y) {
@@ -91,10 +91,10 @@ public class ArmController : MonoBehaviour {
 
 		// Keep Jumping
 		if (jumpDirection == 0) {
-			if (!isFalling && Input.GetKey (KeyCode.W)) {
+			if (!isFalling && !isGettingUp && Input.GetKey (KeyCode.W)) {
 				jumpDirection = 1;
 				PlaySound (SoundEffects.Jump);
-			} else if (!isFalling && Input.GetKey (KeyCode.S)) {
+			} else if (!isFalling && !isGettingUp && Input.GetKey (KeyCode.S)) {
 				jumpDirection = 1;
 				jumpForward = moveSpeed;
 				PlaySound (SoundEffects.Jump);
@@ -103,7 +103,7 @@ public class ArmController : MonoBehaviour {
 		Jump ();
 
 		// Stop all movement and set the jump direction to down (i.e. base will fall)
-		if (!isFalling && Input.GetKeyDown(KeyCode.Z)) {
+		if (!isFalling && !isGettingUp && Input.GetKeyDown(KeyCode.Z)) {
 			jumpForward = 0;
 			currentMoveSpeed = 0;
 			jumpDirection = -1;

@@ -9,9 +9,18 @@ public enum Joints {
 	Wrist
 }
 
+public enum SoundEffects {
+	Jump,
+	Fall,
+	GetUp,
+	Wall
+}
+
 public class ArmController : MonoBehaviour {
 
 	public Limb[] parts;
+	public AudioClip[] sounds;
+	AudioSource audioSource;
 
 	// Moving
 	float moveSpeed = 5f; // normal move speed
@@ -42,6 +51,10 @@ public class ArmController : MonoBehaviour {
 	float getupTimer = 0f;
 	float getupTime = 3f;
 	Vector4 upPos = new Vector4(0, 0, 0, 0);
+
+	void Start() {
+		audioSource = GetComponent<AudioSource> ();
+	}
 
 	void Update() {
 		// Keep nodding wrist
@@ -77,13 +90,16 @@ public class ArmController : MonoBehaviour {
 
 
 		// Keep Jumping
-		if (jumpDirection == 0)
-			if (!isFalling && Input.GetKey(KeyCode.W)) {
+		if (jumpDirection == 0) {
+			if (!isFalling && Input.GetKey (KeyCode.W)) {
 				jumpDirection = 1;
-			} else if (!isFalling && Input.GetKey(KeyCode.S)) {
+				PlaySound (SoundEffects.Jump);
+			} else if (!isFalling && Input.GetKey (KeyCode.S)) {
 				jumpDirection = 1;
 				jumpForward = moveSpeed;
+				PlaySound (SoundEffects.Jump);
 			}
+		}
 		Jump ();
 
 		// Stop all movement and set the jump direction to down (i.e. base will fall)
@@ -106,6 +122,7 @@ public class ArmController : MonoBehaviour {
 				isNodding = true;
 				RotationChange (upPos);
 				currentMoveSpeed = moveSpeed;
+				PlaySound (SoundEffects.GetUp);
 			}
 		}
 	}
@@ -127,6 +144,7 @@ public class ArmController : MonoBehaviour {
 			if (isFalling) {
 				isFalling = false;
 				isGettingUp = true;
+				PlaySound (SoundEffects.Fall);
 			}
 
 			// reset the y position to 0
@@ -143,8 +161,10 @@ public class ArmController : MonoBehaviour {
 			// Check if base is about to leave the boundary
 			if (moveDirection < 0 && parts [(int)Joints.Base].jointLocation.x <= moveBounds.x) {
 				moveDirection = 1;
+			PlaySound (SoundEffects.Wall);
 			} else if (moveDirection > 0 && parts [(int)Joints.Base].jointLocation.x >= moveBounds.y) {
 				moveDirection = -1;
+			PlaySound (SoundEffects.Wall);
 			}
 	}
 
@@ -192,5 +212,11 @@ public class ArmController : MonoBehaviour {
 		parts [(int)Joints.Wrist].angleChanged = true;
 		parts [(int)Joints.Wrist].lastAngle = parts [(int)Joints.Wrist].angle;
 		parts [(int)Joints.Wrist].angle = angles.w * Mathf.Deg2Rad;
+	}
+
+	void PlaySound(SoundEffects sound) {
+		audioSource.clip = sounds [(int)sound];
+		audioSource.pitch = Random.Range (0.9f, 1.1f);
+		audioSource.Play ();
 	}
 }
